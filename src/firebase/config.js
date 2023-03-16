@@ -1,4 +1,6 @@
+// NOTE firebase 9 "npm install firebase"
 import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDB01rjApc6OwyrIkor36wBxMM6le5BG7M",
@@ -10,4 +12,9 @@ const firebaseConfig = {
 };
 
 // NOTE instead of importing the entire firebase library we only brought in what we needed. So we do not need to drill into firebase as we have done in the past "firebase.initializeApp(firebaseConfig)"
+//init firebase
 initializeApp(firebaseConfig);
+//init firestore
+const db = getFirestore();
+
+export { db };
