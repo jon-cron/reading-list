@@ -3,7 +3,7 @@ import { useLogin } from "../hooks/useLogin.js";
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { login } = useLogin();
+  const { login, error } = useLogin();
   const handleSubmit = (e) => {
     e.preventDefault();
     login(email, password);
@@ -32,6 +32,7 @@ export default function Login() {
           />
         </label>
         <button>log in</button>
+        {error && <p>{error}</p>}
       </form>
     </div>
   );
