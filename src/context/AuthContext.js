@@ -1,5 +1,6 @@
 import { createContext, useEffect, useReducer } from "react";
 import { auth } from "../firebase/config.js";
+import { onAuthStateChanged } from "firebase/auth";
 export const AuthContext = createContext();
 // NOTE the Reducer is used to change our state
 export const authReducer = (state, action) => {
@@ -22,7 +23,7 @@ export const AuthContextProvider = ({ children }) => {
   // NOTE this useEffect code checks for the users status upon refresh
   // NOTE setting a function within a useEffect to a const will stop that useEffect from firing again if there is a change that would normally make the useEffect rerun
   useEffect(() => {
-    const unsub = projectAuth.onAuthStateChanged((user) => {
+    const unsub = onAuthStateChanged(auth, (user) => {
       dispatch({ type: "AUTH_IS_READY", payload: user });
       unsub();
     });
