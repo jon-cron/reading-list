@@ -1,7 +1,7 @@
 // NOTE firebase 9 "npm install firebase"
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
-
+import { getAuth } from "firebase/auth";
 const firebaseConfig = {
   apiKey: "AIzaSyDB01rjApc6OwyrIkor36wBxMM6le5BG7M",
   authDomain: "readinglistapp-641ab.firebaseapp.com",
@@ -16,5 +16,5 @@ const firebaseConfig = {
 initializeApp(firebaseConfig);
 //init firestore
 const db = getFirestore();
-
-export { db };
+const auth = getAuth();
+export { db, auth };
