@@ -1,13 +1,14 @@
 import BookList from "../components/BookList";
 import BookForm from "../components/BookForm";
 import { useCollection } from "../hooks/useCollection.js";
-
+import { useAuthContext } from "../hooks/useAuthContext.js";
 //db
 // import { db } from "../firebase/config.js";
 // import { collection, getDocs } from "firebase/firestore";
 export default function Home() {
+  const { user } = useAuthContext();
   // NOTE aliasing out documents to be books to meet our data model
-  const { documents: books } = useCollection("books");
+  const { documents: books } = useCollection("books", ["uid", "==", user.uid]);
   // const [books, setBooks] = useState(null);
   // NOTE this useEffect was an example of data fetching with firebase 9. But it was not an example of realtime data fetching which will be next.
   // useEffect(() => {
