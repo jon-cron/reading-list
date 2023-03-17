@@ -3,7 +3,10 @@ import { useState } from "react";
 //firebase
 import { db } from "../firebase/config.js";
 import { collection, addDoc } from "firebase/firestore";
+
+import { useAuthContext } from "../hooks/useAuthContext.js";
 export default function BookForm() {
+  const { user } = useAuthContext();
   const [newBook, setNewBook] = useState("");
 
   const handleSubmit = async (e) => {
@@ -15,8 +18,10 @@ export default function BookForm() {
     // NOTE here we are again aliasing out the collection
     const ref = collection(db, "books");
 
+    // NOTE if we were to say id we would overwrite the firestore auto generated id so we say uid to add another data type.
     await addDoc(ref, {
       title: newBook,
+      uid: user.uid,
     });
     setNewBook("");
   };
